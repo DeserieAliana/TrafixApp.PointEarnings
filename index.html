@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafix - Point Earnings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+        }
+        header {
+            padding: 1em;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid gray;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: gray;
+            color: white;
+        }
+        .points-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: gray;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Trafix - Point Earnings</h1>
+</header>
+
+<div class="container">
+    <h2>Ways to Earn Points</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Points Earned</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Travel 1 km</td>
+                <td>1 point</td>
+            </tr>
+            <tr>
+                <td>Redeem Gift Cards</td>
+                <td>50 points</td>
+            </tr>
+            <tr>
+                <td>Daily Log In</td>
+                <td>0.5 points per day</td>
+            </tr>
+            <tr>
+                <td>Welcome Reward (One-time)</td>
+                <td>10 points</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="points-section">
+        <h3>Your Current Points: <span id="current-points">0</span></h3>
+        <button onclick="earnPoints()">Simulate Earning Points</button>
+    </div>
+</div>
+
+<footer>
+    <p>Trafix App</p>
+</footer>
+
+<script>
+    // Initial Points - Sync this with Rewards Dashboard
+    let currentPoints = 0;
+
+    // Simulate earning points dynamically
+    function earnPoints() {
+        let earned = Math.floor(Math.random() * 5) + 1; // Earn between 1-5 points for simulation
+        currentPoints += earned;
+        document.getElementById('current-points').innerText = currentPoints;
+
+        // Save to local storage for cross-page sync
+        localStorage.setItem('trafixPoints', currentPoints);
+        alert(`You earned ${earned} points!`);
+    }
+
+    // Load points from local storage
+    window.onload = function() {
+        const savedPoints = localStorage.getItem('trafixPoints');
+        if (savedPoints) {
+            currentPoints = parseInt(savedPoints, 10);
+            document.getElementById('current-points').innerText = currentPoints;
+        }
+    };
+</script>
+
+</body>
+</html>
